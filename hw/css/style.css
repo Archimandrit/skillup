@@ -1,0 +1,92 @@
+.header .logo img {
+	float: left;
+}
+
+.header .logo img {
+	width: 80px
+}
+.logo {
+	margin: 0 0 0 100px;
+}
+.nav{
+	margin: 0 0 0 600px;
+}
+
+.header .nav li {
+	float: left; 
+ 	display: inline-block;
+ 	padding: 0px 16px;
+ }
+
+ li a:hover {
+    background-color: #68a8dc;
+}
+a {
+	text-decoration: none;
+}
+a:visited{
+color: blue;
+}
+.username a:hover {
+	text-decoration: underline;
+}
+.content { 
+    margin: 20px 50px 70px 0px;
+    width: 600px;
+    height: 600px;
+    padding: 5px;
+    padding-right: 20px;
+    float: left;
+}
+.posts {  
+ 	margin: 30px 100px;
+ 	width: 500px;
+ 	height: 900px;
+}
+.post {
+	margin:	30px 30px;
+	width: 500px;
+	height: 500px;
+}
+
+.post .avatar img {
+	margin:  0 0 10px 0;
+	float:left;
+	width: 60px;
+	height: 60px;
+}
+.post .username {
+	margin: 0 0 0 100px;
+}
+.post .body .pic{
+	margin: 50px 15px 0 0;
+	cursor: pointer;
+
+}
+.body .likes,.usercommentary{
+	display: inline-block;
+}
+
+.tags {
+	margin: 0
+	width: 500px;
+	height: 100px;
+	background-color: blue;
+}
+.likes img {
+	width: 40px;
+	height: 30px;
+}
+.button {
+    background-color: #00a2e8;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+#send{
+	margin: 0 0 0 345px;
+}
