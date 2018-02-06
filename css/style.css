@@ -1,19 +1,14 @@
--.header .logo img {
+.header .logo img {
 	float: left;
+	width: 80px;
 }
 
-.header .logo img {
-	width: 80px
-}
 .logo {
 	margin: 0 0 0 100px;
 }
-.nav{
-	margin: 0 0 0 600px;
-}
 
 .header .nav li {
-	float: left;
+	float: right;
 	display: inline-block;
 	padding: 0px 16px;
 }
