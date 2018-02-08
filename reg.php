@@ -1,34 +1,51 @@
 <?php
 
-var_dump($_POST);
+function getFullName ($user) {
+    return $user['firstname'] . ' ' . $user['lastname'];
+}
+
+$errorMessage = [];
+
+
+$user = [
+    'firstname' => null,
+    'lastmane' =>null,
+    'password' => null,
+    'sex' => null,
+    'age' => null,
+    'growth' => null,
+    'list_fruits' => [],
+    'stack_learn' => [],
+];
+
+
 if(isset($_POST ['is_agree'])) {
     $user = [
         'firstname' => $_POST['firstname'],
-        'lastmane' => $_POST ['lastname'],
+        'lastname' => $_POST ['lastname'],
         'password' => $_POST['password'],
         'sex' => $_POST['sex'],
         'age' => (int)$_POST['age'],
         'growth' => $_POST['growth'],
+        'list_fruits' => 'apple, peanut, orange, pineaple',
+        'stack_learn' => [],
  //     'stack_learn' => $_POST['stack_learn'],
 
     ];
     if (isset ($_POST['stack_learn'])){
         $user['stack_learn'] = $_POST['stack_learn'];
     }
-    if($user['age']>18){
-        echo 'Gz выжил';
-    } elseif($user['age']== 18){
-        echo 'pochti gz';
-    } else {
-        echo 'pezduk';
+    if  (strlen($user['firstname']) <3 || strlen($user['lastname']) <3) {
+        $errorMessage[] = 'Более 3 букв в имени и фамилии';
     }
-
-
-
-
+    if (!(in_array('html', $user['stack_learn']) && in_array('php', $user['stack_learn']))){
+        $errorMessage[] = 'Иди учи хмл и пэхэпэ';
+    }
+var_dump(getFullName($user));
+die();
 
 }
-var_dump($user);
+
 ?>
 <!doctype html>
 <html lang="ru">
@@ -40,26 +57,40 @@ var_dump($user);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-
-
+<?php  if ($errorMessage) { ?>
+    <?php  foreach ($errorMessage as $message) {?>
+    <div class="alert alert-danger" role="alert">
+         <?=$message?>
+    </div>
+    <?php }?>
+<?php } ?>
 <div class="container-fluid jumbotron col-md-offset-4 col-md-5">
-    <?php  isset ($user['stack_learn'] as $key => $lang) { ?>
+    <?php  if (isset ($user['stack_learn'])) { ?>
     <h3>We izuchaem:</h3>
     <ul>
         <?php  foreach ($user['stack_learn'] as $key => $lang) { ?>
             <li><?= $lang ?></li>
         <?php } ?>
     </ul>
+        <h3>Наши фрукты:</h3>
+        <ul></ul>
+        <?php  foreach (explode(', ' , $user['list_fruits']) as $key => $fru) { ?>
+            <li><?= $fru ?></li>
+        <?php } ?>
+        </ul>
+        <h3>Мы изучаем <?= implode (',' , $user['stack_learn'])?>.</h3>
     <?php } ?>
+
     <hr />
     <form action="" method="POST">
         <div class="form-group">
             <label for="firstname">Имя</label>
-            <input class="form-control" id="firstname" name="firstname" placeholder="Имя" required>
+            <input class="form-control" id="firstname" name="firstname"
+                   value="<?= (isset($_POST['firstname'])) ? $_POST['firstname'] : ' '?>" placeholder="Имя">
         </div>
         <div class="form-group">
             <label for="lastname">Фамилия</label>
-            <input class="form-control" id="lastname" name="lastname" placeholder="Фамилия" required>
+            <input class="form-control" id="lastname" name="lastname" placeholder="Фамилия">
         </div>
         <div class="form-group">
             <label for="password" class="control-label">Пароль</label>
