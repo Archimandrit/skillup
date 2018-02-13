@@ -30,9 +30,17 @@ if(isset($_POST ['is_agree'])) {
         'list_fruits' => 'apple, peanut, orange, pineaple',
         'stack_learn' => [],
  //     'stack_learn' => $_POST['stack_learn'],
-
     ];
-    if (isset ($_POST['stack_learn'])){
+
+    $jsonUser = json_encode($user, JSON_UNESCAPED_UNICODE);
+    $arrUser = json_decode($jsonUser , true);
+    $objUser =  json_decode($jsonUser , false);
+    var_dump($jsonUser);
+    var_dump($arrUser);
+    var_dump($objUser);
+    var_dump(serialize($jsonUser));
+    die();
+   if (@isset ($_POST['stack_learn'])){
         $user['stack_learn'] = $_POST['stack_learn'];
     }
     if  (strlen($user['firstname']) <3 || strlen($user['lastname']) <3) {
