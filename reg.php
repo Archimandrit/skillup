@@ -62,6 +62,15 @@ if ( isset($_POST['is_agree']) ) {
 //    var_dump(unserialize($test));
 
 
+    $uploadUser = UPLOAD_DIR . 'users/';
+    createPath($uploadUser);
+//          ДОБАВЛЯЕТ ФАЙЛ С ДАННЫМИ ЧЕРЕЗ JSON
+
+//    $filename = (uniqid() . '.txt');
+//    $userinfo = fopen($uploadUser. $filename, ('w'));
+//    fwrite($userinfo, json_encode($user, JSON_UNESCAPED_UNICODE .PHP_EOL ));
+//    fclose($userinfo);
+
     if (isset($_FILES['photo']) && empty($_FILES['photo']['error'])) {
         $uploadPath = UPLOAD_DIR . 'photo/';
         createPath($uploadPath);
