@@ -12,5 +12,8 @@ var_dump($b);
 var_dump($g);
 var_dump($result);
 
+$ser = implode(', ', $_SERVER);
+
+var_dump($ser);
 ?>
 

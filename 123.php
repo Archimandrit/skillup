@@ -3,7 +3,7 @@ $user =[
      'post1'=>[
 
         'username' => 'Hu',
-        'createdAt' => ['3 мин назад'],
+        'createdAt' => ['3 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'],
         'ava' => '<img src="image/cat.jpg">',
     ]
 ];
@@ -23,14 +23,14 @@ $user =[
     </div>
     <div class="nav">
         <ul>
-            <li><a href="http://google.com">Случайное</a></li>
-            <li><a href="http://google.com">По рейтингу</a></li>
+            <li><a href="http://google.com">РЎР»СѓС‡Р°Р№РЅРѕРµ</a></li>
+            <li><a href="http://google.com">РџРѕ СЂРµР№С‚РёРЅРіСѓ</a></li>
         </ul>
     </div>
     <div class="search">
         <form>
-            <p><input type="search" name="" placeholder="Поиск по сайту">
-                <input type="image" src="image/search_button.png" width="30px" height="30px"  value="Найти"></p>
+            <p><input type="search" name="" placeholder="РџРѕРёСЃРє РїРѕ СЃР°Р№С‚Сѓ">
+                <input type="image" src="image/search_button.png" width="30px" height="30px"  value="РќР°Р№С‚Рё"></p>
         </form>
     </div>
 
@@ -39,13 +39,12 @@ $user =[
     <div class="posts">
         <div class="post">
             <div class="ava">
-          <?php echo ($user['post1']['ava'])?>
-                <br><?php echo ($user['post1']['username']);
-                  ?><br>
-                3 мин назад
+                <img src="image/cat.jpg" alt="">
+                <br>@nickname </br>
+                3 РјРёРЅ РЅР°Р·Р°Рґ
             </div>
             <div class="pic">
-                <?php echo ($user['post1']['ava'])?>
+                <img src="image/cat.jpg" alt="">
             </div>
             <div class="like">
                 <img src="image/like.png" alt="">
@@ -58,7 +57,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -74,7 +73,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -89,7 +88,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -104,7 +103,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname </br>3 мин назад </br></h5>
+                <br>@nickname </br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -119,7 +118,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -134,7 +133,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -149,7 +148,7 @@ $user =[
         <div class="post">
             <div class="ava">
                 <img src="image/cat.jpg" alt="">
-                <br>@nickname <br>3 мин назад </br></h5>
+                <br>@nickname <br>3 РјРёРЅ РЅР°Р·Р°Рґ </br></h5>
             </div>
             <div class="pic">
                 <img src="image/cat.jpg" alt="">
@@ -171,17 +170,23 @@ $user =[
         </div>
         <div class="about">
             <ul>
-                <li><a href="about.html">О проекте</a></li>
-                <li><a href="http://google.com">Помощь</a> </li>
-                <li><a href="http://google.com">Поддержать проект</a></li>
+                <li><a href="about.html">Рћ РїСЂРѕРµРєС‚Рµ</a></li>
+                <li><a href="http://google.com">РџРѕРјРѕС‰СЊ</a> </li>
+                <li><a href="http://google.com">РџРѕРґРґРµСЂР¶Р°С‚СЊ РїСЂРѕРµРєС‚</a></li>
             </ul>
+        </div>
+        <div class="counter">
+
         </div>
         <div class="subscribe">
             <form>
-                <p><input type="text" name="" placeholder="Подпишитесь">
-                    <input type="submit" value="Подписаться"></p>
+                <p><input type="text" name="" placeholder="РџРѕРґРїРёС€РёС‚РµСЃСЊ">
+                    <input type="submit" value="РџРѕРґРїРёСЃР°С‚СЊСЃСЏ"></p>
             </form>
         </div>
+    </div>
+</footer>
+</html>        </div>
     </div>
 </footer>
 </html>
