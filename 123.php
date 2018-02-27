@@ -7,6 +7,10 @@ $user =[
         'ava' => '<img src="image/cat.jpg">',
     ]
 ];
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +28,7 @@ $user =[
     <div class="nav">
         <ul>
             <li><a href="http://google.com">Случайное</a></li>
-            <li><a href="http://google.com">По рейтингу</a></li>
+            <li><a href="users123.php">По рейтингу</a></li>
         </ul>
     </div>
     <div class="search">
@@ -32,6 +36,12 @@ $user =[
             <p><input type="search" name="" placeholder="Поиск по сайту">
                 <input type="image" src="image/search_button.png" width="30px" height="30px"  value="Найти"></p>
         </form>
+    </div>
+    <div class="register">
+        <a href="reg123.php">Регистрация</a>
+    </div>
+    <div class="auth">
+
     </div>
 
 </div>

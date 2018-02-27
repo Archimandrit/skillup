@@ -15,11 +15,12 @@
 }
 a {
     text-decoration: none;
+
 }
 a:visited{
     color: inherit;;
 }
-li a:hover {
+a:hover {
     text-decoration: underline;
 }
 .nav {
@@ -90,4 +91,8 @@ li a:hover {
 }
 .subscribe {
     margin-left: 20%;
+}
+
+.register {
+    margin: 30px 0 0 40px;
 }

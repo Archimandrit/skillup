@@ -96,7 +96,7 @@ if ( isset($_POST['is_agree']) ) {
             $db= new PDO ('mysql:host=localhost;dbname=php2;charset=utf8', 'root', 'root');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
             $result = $db->prepare("
-            INSERT INTO users (firstname, lastname, password, age, growth)
+            INSERT INTO users (login, lastname, password, age, growth)
             VALUES (:firstname,:lastname, :password, :age, :growth);
             ");
             var_dump($result);
