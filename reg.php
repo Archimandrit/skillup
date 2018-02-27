@@ -1,6 +1,12 @@
 <?php
 
 define('UPLOAD_DIR', 'upload/');
+require_once 'model/User.php';
+$param = $_POST;
+
+$user = new User();
+$user->setFirstname('Iban');
+$user->setLastname('pod');
 
 //$h = fopen('test.txt', 'a+');
 //for ($i=1;$i<=100;$i++) {
@@ -33,22 +39,21 @@ function createPath($path) {
 }
 
 $errorMessage = [];
+//       Создание пользователя
+if ( isset($param['is_agree']) ) {
+    $user = new User();
+    $user->setFirstname($param['Iban']);
+    $user->setLastname($param['pod']);
+    $user->setPassword($param['password']);
+    $user->setAge($param['age']);
+    $user->setSex($param['sex']);
+    $user->setGrowth($param['growth']);
+    if (isset($param['stack_learn'])){
+        $user->setStackLearn($param['stack_learn']);
+    }
 
-if ( isset($_POST['is_agree']) ) {
-
-    // Создание пользователя
-    $user = [
-        'firstname' => $_POST['firstname'],
-        'lastname' => $_POST['lastname'],
-        'password' => $_POST['password'],
-        'sex' => $_POST['sex'],
-        'age' => (int)$_POST['age'],
-        'growth' => $_POST['growth'],
-        'stack_learn' => [],
-        'list_fruits' => 'Яблоко, Апельсин, Груша',
-    ];
-    if (isset($_POST['stack_learn'])) {
-        $user['stack_learn'] = $_POST['stack_learn'];
+    if (isset($param['stack_learn'])) {
+        $user['stack_learn'] = $param['stack_learn'];
     }
 //
 //    $jsonUser = json_encode($user, JSON_UNESCAPED_UNICODE);
@@ -78,14 +83,14 @@ if ( isset($_POST['is_agree']) ) {
     }
 
     // Валидация
-    if (!(strlen($user['firstname']) >= 3 && strlen($user['lastname'])) >= 3) {
+    if (!$user->isValidFullName()) {
         $errorMessage[] = 'Имя и Фамилия не должны бать короче 3х символов';
     }
 
     if (
         !(
-            in_array('html', $user['stack_learn']) &&
-            in_array('php', $user['stack_learn'])
+            in_array('html', $user->getStackLearn()) &&
+            in_array('php', $user->getStackLearn())
         )
     ) {
         $errorMessage[] = 'Требуется html и php';
@@ -101,11 +106,11 @@ if ( isset($_POST['is_agree']) ) {
             ");
             var_dump($result);
             $result2=$result->execute([
-                'firstname'=> $user['firstname'],
-                'lastname'=> $user['lastname'],
-                'password'=> $user['password'],
-                'age'=> $user['age'],
-                'growth'=> $user['growth'],
+                'firstname'=> $user->getFirstname(),
+                'lastname'=> $user->getLastname(),
+                'password'=> $user->getPassword(),
+                'age'=> $user->getAge(),
+                'growth'=> $user->getGrowth(),
             ]);
         } catch (PDOException $e) {
             var_dump($e->getMessage());
@@ -142,22 +147,22 @@ var_dump($user);
 
 <div class="container-fluid jumbotron col-md-offset-4 col-md-5">
 
-    <?php if (isset($user['stack_learn'])) { ?>
+    <?php if (isset($user)) { ?>
     <h3>Мы изучаем:</h3>
     <ul>
-        <?php foreach ($user['stack_learn'] as $lang) { ?>
+        <?php foreach ($user->getStackLearn() as $lang) { ?>
             <li><?= $lang ?></li>
         <?php } ?>
     </ul>
 
     <h3>Наши фрукты:</h3>
     <ul>
-        <?php foreach (explode(', ', $user['list_fruits']) as $fruit) { ?>
+        <?php foreach (explode(', ', $user->getListFruits()) as $fruit) { ?>
             <li><?= $fruit ?></li>
         <?php } ?>
     </ul>
 
-    <h3>Мы изучаем: <?= implode(', ', $user['stack_learn']) ?>.</h3>
+    <h3>Мы изучаем: <?= implode(', ', $user->getStackLearn()) ?>.</h3>
     <?php } ?>
 
 
@@ -167,12 +172,12 @@ var_dump($user);
         <div class="form-group">
             <label for="firstname">Имя</label>
             <input class="form-control" id="firstname" name="firstname"
-                   value="<?= (isset($_POST['firstname'])) ? $_POST['firstname'] : 'Тест' ?>" placeholder="Имя">
+                   value="<?= (isset($param['firstname'])) ? $param['firstname'] : 'Тест' ?>" placeholder="Имя">
         </div>
         <div class="form-group">
             <label for="lastname">Фамилия</label>
             <input class="form-control" id="lastname" name="lastname"
-                   value="<?= (isset($_POST['lastname'])) ? $_POST['lastname'] : 'Тест' ?>" placeholder="Фамилия">
+                   value="<?= (isset($param['lastname'])) ? $param['lastname'] : 'Тест' ?>" placeholder="Фамилия">
         </div>
         <div class="form-group">
             <label for="password" class="control-label">Пароль</label>

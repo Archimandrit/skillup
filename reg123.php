@@ -2,28 +2,34 @@
 
 $salt='gHn@6+5$';
 $errorMessage=[];
-if (empty($_POST['login']) || $_POST['password']){
+if (empty($_POST)){
     $errorMessage[]='Введите логин и пароль';
+} else {
+    if (empty($_POST['login']) && $_POST['password']){
+        $errorMessage[]='Введите логин и пароль';
+    }
+    if (empty($_POST['password']) && $_POST['password2'] ){
+        $errorMessage[] = 'Введите пароль';
+    }
+    if(($_POST['password'] !== $_POST['password2'])){
+        $errorMessage[] = 'Пароли не совпадают';
+    }
+    if($_POST['email']!== $_POST['email2']){
+        $errorMessage[] = 'Email не совпадает';
+    }
+
 }
-if (empty($_POST['password']) && $_POST['password2'] ){
-    $errorMessage[] = 'Введите пароль';
-}
-if(($_POST['password'] !== $_POST['password2'])){
-    $errorMessage[] = 'Пароли не совпадают';
-}
-if($_POST['email']!== $_POST['email2']){
-    $errorMessage[] = 'Email не совпадает';
-}
-$user=[
-    'login' => $_POST['login'],
-    'password' => $_POST['password'],
-    'password2' => $_POST['password2'],
-    'email' => $_POST['email'],
-    'email2' =>$_POST['email2'],
-];
+
 
 if (empty($errorMessage)) {
     try {
+        $user=[
+            'login' => $_POST['login'],
+            'password' => $_POST['password'],
+            'password2' => $_POST['password2'],
+            'email' => $_POST['email'],
+            'email2' =>$_POST['email2'],
+        ];
         $db = new PDO('mysql:host=localhost;dbname=database123;charset=utf8', 'mysql', 'mysql');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $result = $db->prepare("
@@ -37,6 +43,7 @@ VALUES (:login, :password,:email)");
     } catch (PDOException $e) {
     }
 }
+var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
