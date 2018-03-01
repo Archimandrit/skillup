@@ -17,6 +17,12 @@ class User
 
     private $listFruits;
 
+    public static $salt='pIz@TiM$';
+
+    public static function getSalt() {
+        return self::$salt;
+    }
+
     public function  setFirstname($firstname)
     {
         $this->firstname = $firstname;

@@ -3,6 +3,8 @@
 define('UPLOAD_DIR', 'upload/');
 require_once 'model/User.php';
 $param = $_POST;
+var_dump(User::getSalt());
+die();
 
 $user = new User();
 $user->setFirstname('Iban');
@@ -97,6 +99,19 @@ if ( isset($param['is_agree']) ) {
     }
 
     if (empty($errorMessage)){
+        $db = new DB();
+        $db->execute("
+            INSERT INTO users (login, lastname, password, age, growth)
+            VALUES (:firstname,:lastname, :password, :age, :growth));
+            ",
+            [
+            'firstname'=> $user->getFirstname(),
+            'lastname'=> $user->getLastname(),
+            'password'=> $user->getPassword(),
+            'age'=> $user->getAge(),
+            'growth'=> $user->getGrowth(),
+            ];
+
         try {
             $db= new PDO ('mysql:host=localhost;dbname=php2;charset=utf8', 'root', 'root');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
