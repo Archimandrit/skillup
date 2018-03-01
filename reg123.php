@@ -30,8 +30,7 @@ if (empty($errorMessage)) {
             'email' => $_POST['email'],
             'email2' =>$_POST['email2'],
         ];
-        $db = new PDO('mysql:host=localhost;dbname=database123;charset=utf8', 'mysql', 'mysql');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = dbConnect();
         $result = $db->prepare("
 INSERT INTO Users (login, password, email)
 VALUES (:login, :password,:email)");
