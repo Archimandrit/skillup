@@ -1,32 +1,31 @@
 <?php
-
 $salt='gHn@6+5$';
 $errorMessage=[];
-if (empty($_POST['login']) || $_POST['password']){
+if (empty($_POST['logi\n']) || $_POST['password']){
     $errorMessage[]='Введите логин и пароль';
 }
-if (empty($_POST['password']) && $_POST['password2'] ){
-    $errorMessage[] = 'Введите пароль';
-}
-if(($_POST['password'] !== $_POST['password2'])){
-    $errorMessage[] = 'Пароли не совпадают';
-}
-if($_POST['email']!== $_POST['email2']){
-    $errorMessage[] = 'Email не совпадает';
-}
-$user=[
-    'login' => $_POST['login'],
-    'password' => $_POST['password'],
-    'password2' => $_POST['password2'],
-    'email' => $_POST['email'],
-    'email2' =>$_POST['email2'],
-];
+
+    if (empty($_POST['password']) && $_POST['password2'] ){
+        $errorMessage[] = 'Введите пароль';
+    }
+    if(($_POST['password'] !== $_POST['password2'])){
+        $errorMessage[] = 'Пароли не совпадают';
+    }
+    if($_POST['email']!== $_POST['email2']){
+        $errorMessage[] = 'Email не совпадает';
+    }
+    $user=[
+        'login' => $_POST['login'],
+        'password' => $_POST['password'],
+        'password2' => $_POST['password2'],
+        'email' => $_POST['email'],
+        'email2' =>$_POST['email2'],
+    ];
+
 
 if (empty($errorMessage)) {
     try {
-        $db = new PDO('mysql:host=localhost;dbname=database123;charset=utf8', 'mysql', 'mysql');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $result = $db->prepare("
+        $result = dbRegistration()->prepare("
 INSERT INTO Users (login, password, email)
 VALUES (:login, :password,:email)");
         $result2 = $result->execute([
