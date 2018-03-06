@@ -2,17 +2,17 @@
 $salt='gHn@6+5$';
 $errorMessage=[];
 if (empty($_POST['logi\n']) || $_POST['password']){
-    $errorMessage[]='Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ';
+    $errorMessage[]='Введите логин и пароль';
 }
 
     if (empty($_POST['password']) && $_POST['password2'] ){
-        $errorMessage[] = 'Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ';
+        $errorMessage[] = 'Введите пароль';
     }
     if(($_POST['password'] !== $_POST['password2'])){
-        $errorMessage[] = 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚';
+        $errorMessage[] = 'Пароли не совпадают';
     }
     if($_POST['email']!== $_POST['email2']){
-        $errorMessage[] = 'Email РЅРµ СЃРѕРІРїР°РґР°РµС‚';
+        $errorMessage[] = 'Email не совпадает';
     }
     $user=[
         'login' => $_POST['login'],
@@ -43,7 +43,7 @@ VALUES (:login, :password,:email)");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SkillUP | Р РµРіРёСЃС‚СЂР°С†РёСЏ</title>
+    <title>SkillUP | Регистрация</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <style>
@@ -63,29 +63,29 @@ VALUES (:login, :password,:email)");
     <?php } ?>
 <?php } ?>
 <body>
-<h4>Р РµРіРёСЃС‚СЂР°С†РёСЏ</h4>
+<h4>Регистрация</h4>
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="login" >Р›РѕРіРёРЅ</label>
-        <input id="login" name="login" placeholder="Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ" >
+        <label for="login" >Логин</label>
+        <input id="login" name="login" placeholder="Введите логин" >
     </div>
     <div class="form-group">
-        <label for="password">РџР°СЂРѕР»СЊ</label>
-        <input type="password" id="password" name="password" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Введите пароль">
     </div>
     <div class="form-group">
-        <label for="password2">РџСЂРѕРІРµСЂРєР° РїР°СЂРѕР»СЏ</label>
-        <input type="password" id="password2" name="password2" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ">
+        <label for="password2">Проверка пароля</label>
+        <input type="password" id="password2" name="password2" placeholder="Введите пароль">
     </div>
     <div class="form-group">
         <label for="email">email</label>
-        <input id="email" name="email" placeholder="Р’РІРµРґРёС‚Рµ email">
+        <input id="email" name="email" placeholder="Введите email">
     </div>
     <div class="form-group">
-        <label for="email2">РїСЂРѕРІРµСЂРєР° email</label>
-        <input id="email" name="email2" placeholder="Р’РІРµРґРёС‚Рµ email">
+        <label for="email2">проверка email</label>
+        <input id="email" name="email2" placeholder="Введите email">
     </div>
-    <button class="btn btn-primary">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</button>
+    <button class="btn btn-primary">Зарегистрироваться</button>
 </form>
 
 

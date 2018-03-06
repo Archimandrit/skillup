@@ -1,4 +1,12 @@
 <?php
+$db = new DB();
+$stmt = $db->execute("
+SELECT * FROM users
+WHERE age >= 18",
+[
+        'age' => 18,
+]);
+
 
 $db = new PDO ('mysql:host=localhost;dbname=php2;charset=utf8', 'root', 'root');
 
