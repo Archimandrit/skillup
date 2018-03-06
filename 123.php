@@ -23,7 +23,7 @@ $user =[
 <body>
 <div class="header">
     <div class="logo">
-        <a href="about.html"><img src="image/flag.png" ></a>
+        <a href="oldLes/about.html"><img src="image/flag.png" ></a>
     </div>
     <div class="nav">
         <ul>
@@ -41,6 +41,9 @@ $user =[
         <a href="reg123.php">Регистрация</a>
     </div>
     <div class="auth">
+        <div class="addPost">
+            <a href="addPost.php">Добавить</a>
+        </div>
 
     </div>
 
@@ -180,7 +183,7 @@ $user =[
         </div>
         <div class="about">
             <ul>
-                <li><a href="about.html">О проекте</a></li>
+                <li><a href="oldLes/about.html">О проекте</a></li>
                 <li><a href="http://google.com">Помощь</a> </li>
                 <li><a href="http://google.com">Поддержать проект</a></li>
             </ul>

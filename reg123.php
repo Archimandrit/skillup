@@ -1,41 +1,56 @@
 <?php
-$salt='gHn@6+5$';
-$errorMessage=[];
-if (empty($_POST['logi\n']) || $_POST['password']){
-    $errorMessage[]='Введите логин и пароль';
+define ('UPLOAD_DIR', 'upload/' );
+require_once 'functions/Functions.php';
+require_once 'model/User123.php';
+$salt = 'gHn@6+5$';
+$errorMessage = [];
+$param = $_POST;
+if (empty($_POST['password']) ){
+    $errorMessage[] = 'Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ';
 }
+if(($_POST['password'] !== $_POST['password2'])){
+    $errorMessage[] = 'РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚';
+}
+if($_POST['email']!== $_POST['email2']){
+    $errorMessage[] = 'Email РЅРµ СЃРѕРІРїР°РґР°РµС‚';
+}
+$user = new User123();
 
-    if (empty($_POST['password']) && $_POST['password2'] ){
-        $errorMessage[] = 'Введите пароль';
-    }
-    if(($_POST['password'] !== $_POST['password2'])){
-        $errorMessage[] = 'Пароли не совпадают';
-    }
-    if($_POST['email']!== $_POST['email2']){
-        $errorMessage[] = 'Email не совпадает';
-    }
-    $user=[
-        'login' => $_POST['login'],
-        'password' => $_POST['password'],
-        'password2' => $_POST['password2'],
-        'email' => $_POST['email'],
-        'email2' =>$_POST['email2'],
-    ];
+
+
+//$uploadUser = UPLOAD_DIR . 'users/';
+//createPath($uploadUser);
+//          Р”РћР‘РђР’Р›РЇР•Рў Р¤РђР™Р› РЎ Р”РђРќРќР«РњР Р§Р•Р Р•Р— JSON
+
+//    $filename = (uniqid() . '.txt');
+//    $userinfo = fopen($uploadUser. $filename, ('w'));
+//    fwrite($userinfo, json_encode($user, JSON_UNESCAPED_UNICODE .PHP_EOL ));
+//    fclose($userinfo);
+
+//if (isset($_FILES['photo']) && empty($_FILES['photo']['error'])) {
+//$uploadPath = UPLOAD_DIR . 'photo/';
+//createPath($uploadPath);
 
 
 if (empty($errorMessage)) {
+    $user->setLogin($param['login']);
+    $user->setPassword($param['password']);
+    $user->setEmail($param['email']);
     try {
-        $result = dbRegistration()->prepare("
+        $dbReg = dbConnect();
+        $result = dbConnect()->prepare("
 INSERT INTO Users (login, password, email)
 VALUES (:login, :password,:email)");
         $result2 = $result->execute([
-            'login' => $user['login'],
-            'password' => md5($user['password'].$salt),
-            'email' => $user['email'],
+            'login' => $user->getLogin(),
+            'password' => md5($user->getPassword() .$salt),
+            'email' => $user->getEmail(),
         ]);
     } catch (PDOException $e) {
     }
 }
+
+var_dump($user);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -43,7 +58,7 @@ VALUES (:login, :password,:email)");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SkillUP | Регистрация</title>
+    <title>SkillUP | Р РµРіРёСЃС‚СЂР°С†РёСЏ</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <style>
@@ -63,29 +78,29 @@ VALUES (:login, :password,:email)");
     <?php } ?>
 <?php } ?>
 <body>
-<h4>Регистрация</h4>
+<h4>Р РµРіРёСЃС‚СЂР°С†РёСЏ</h4>
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="login" >Логин</label>
-        <input id="login" name="login" placeholder="Введите логин" >
+        <label for="login" >Р›РѕРіРёРЅ</label>
+        <input id="login" name="login" placeholder="Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ" >
     </div>
     <div class="form-group">
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" placeholder="Введите пароль">
+        <label for="password">РџР°СЂРѕР»СЊ</label>
+        <input type="password" id="password" name="password" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ">
     </div>
     <div class="form-group">
-        <label for="password2">Проверка пароля</label>
-        <input type="password" id="password2" name="password2" placeholder="Введите пароль">
+        <label for="password2">РџСЂРѕРІРµСЂРєР° РїР°СЂРѕР»СЏ</label>
+        <input type="password" id="password2" name="password2" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ">
     </div>
     <div class="form-group">
         <label for="email">email</label>
-        <input id="email" name="email" placeholder="Введите email">
+        <input id="email" name="email" placeholder="Р’РІРµРґРёС‚Рµ email">
     </div>
     <div class="form-group">
-        <label for="email2">проверка email</label>
-        <input id="email" name="email2" placeholder="Введите email">
+        <label for="email2">РїСЂРѕРІРµСЂРєР° email</label>
+        <input id="email" name="email2" placeholder="Р’РІРµРґРёС‚Рµ email">
     </div>
-    <button class="btn btn-primary">Зарегистрироваться</button>
+    <button class="btn btn-primary">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</button>
 </form>
 
 

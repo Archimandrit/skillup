@@ -2,9 +2,9 @@
 class Config
 {
     public static $db = [
-        'dsn'=>'mysql:host=localhost;dbname=php2;charset=utf8',
-        'username' =>'root',
-        'password' => 'root',
+        'dsn'=>'mysql:host=localhost;dbname=database123;charset=utf8',
+        'username' =>'mysql',
+        'password' => 'mysql',
         'errors' => true,
     ];
 }
